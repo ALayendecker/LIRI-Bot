@@ -7,40 +7,40 @@ var moment = require("moment");
 var axios = require("axios");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
-
+var fs = require("fs");
 var input = process.argv[2];
 //===============================
 
-switch (input) {
-  case "concert-this":
-    bandsInTown();
-    // make function that does
+function doWhat(input, userInput) {
+  switch (input) {
+    case "concert-this":
+      bandsInTown(userInput);
+      break;
 
-    break;
-  case "spotify-this-song":
-    spotifyFn();
-    // make function that does
+    case "spotify-this-song":
+      spotifyFn(userInput);
+      break;
 
-    break;
-  case "movie-this":
-    movie();
-    // make function that does
+    case "movie-this":
+      movie(userInput);
+      break;
 
-    break;
-  case "do-what-it-says":
-    doWhat();
-    // make function that does
+    case "do-what-it-says":
+      theThingToDo();
+      break;
 
-    break;
-
-  default:
-    break;
+    default:
+      break;
+  }
 }
+
+var userInput = process.argv.slice(3).join(" ");
+doWhat(input, userInput);
 //=================================================================================
 
 // Function for   case "concert-this":
-function bandsInTown() {
-  var artist = process.argv[3];
+function bandsInTown(artist) {
+  // var artist = process.argv[3];
   var queryUrl =
     "https://rest.bandsintown.com/artists/" +
     artist +
@@ -60,8 +60,8 @@ function bandsInTown() {
 //=================================================================================
 
 // Function for case "spotify-this-song":
-function spotifyFn() {
-  var songName = process.argv[3];
+function spotifyFn(songName) {
+  // var songName = process.argv[3];
   spotify
     .search({ type: "track", query: songName, limit: 5 })
     .then(function(response) {
@@ -73,9 +73,6 @@ function spotifyFn() {
         Preview: ${response.tracks.items[i].external_urls.spotify}
         Album: ${response.tracks.items[i].album.name}
         `);
-      if (process.argv[3] === "") {
-        console.log("No song detected try this.");
-      }
     })
     .catch(function(err) {
       console.log(err);
@@ -88,8 +85,15 @@ function spotifyFn() {
 
 // Function for case "movie-this":
 //======================================================================================
-function movie() {
-  var movieName = process.argv[3];
+function movie(movieName) {
+  // var movieName = process.argv[3];
+  if (!movieName) {
+    movieName = "Mr. Nobody";
+    console.log(
+      "If you haven't watched 'Mr.Nobody,' then you should: http://www.imdb.com/title/tt0485947/" +
+        "It's on Netflix"
+    );
+  }
   var queryUrl =
     "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
   axios
@@ -97,9 +101,9 @@ function movie() {
     .then(function(response) {
       console.log(`
         Movie Title: ${response.data.Title}
-        Release Year: ${response.data.Release}
+        Release Year: ${response.data.Year}
         IMDB Rating: ${response.data.imdbRating}
-        Rotten Tomatoes Rating: ${response.data.Ratings[1].value}
+        Rotten Tomatoes Rating: ${response.data.Ratings[1].Value}
         Country Produced: ${response.data.Country}
         Language: ${response.data.Language}
         Plot: ${response.data.Plot}
@@ -124,19 +128,24 @@ function movie() {
       }
       console.log(error.config);
     });
-
-  if (process.argv[3] === "") {
-    console.log(
-      "If you haven't watched 'Mr.Nobody,' then you should: http://www.imdb.com/title/tt0485947/" +
-        "It's on Netflix"
-    );
-  }
 }
 
 //=================================================================================
 
 //=================================================================================
 
+function theThingToDo() {
+  fs.readFile("random.txt", "utf8", function(error, data) {
+    if (error) {
+      return console.log(error);
+    }
+
+    var dataArr = data.split(",");
+
+    console.log(dataArr);
+    doWhat(dataArr[0], dataArr[1]);
+  });
+}
 // Function for  case "do-what-it-says":
 
 //=================================================================================
