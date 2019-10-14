@@ -18,7 +18,7 @@ switch (input) {
 
     break;
   case "spotify-this-song":
-    spotify();
+    spotifyFn();
     // make function that does
 
     break;
@@ -60,17 +60,18 @@ function bandsInTown() {
 //=================================================================================
 
 // Function for case "spotify-this-song":
-function spotify() {
-  Spotify;
+function spotifyFn() {
   var songName = process.argv[3];
   spotify
-    .search({ type: "track", query: songName })
+    .search({ type: "track", query: songName, limit: 5 })
     .then(function(response) {
-      console.log(`
-        Artist(s): ${response.data[0].venue.name}
-        Song Name ${response.data[0].venue.region}
-        Preview: ${moment(response.data[0].datetime).format("MM/DD/YYYY")}
-        Album: ${response.data[0].venue.region}
+      var i = 0;
+      for (var i = 0; i < 3; i++)
+        console.log(`
+        Artist(s): ${response.tracks.items[i].artists[0].name}
+        Song Name: ${response.tracks.items[i].name}
+        Preview: ${response.tracks.items[i].external_urls.spotify}
+        Album: ${response.tracks.items[i].album.name}
         `);
       if (process.argv[3] === "") {
         console.log("No song detected try this.");
