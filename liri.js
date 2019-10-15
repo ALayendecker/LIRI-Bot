@@ -61,7 +61,10 @@ function bandsInTown(artist) {
 
 // Function for case "spotify-this-song":
 function spotifyFn(songName) {
-  // var songName = process.argv[3];
+  if (!songName) {
+    songName = "The Sign Ace of Base";
+  }
+
   spotify
     .search({ type: "track", query: songName, limit: 5 })
     .then(function(response) {
@@ -140,7 +143,7 @@ function theThingToDo() {
       return console.log(error);
     }
 
-    var dataArr = data.split(",");
+    var dataArr = data.split(", ");
 
     console.log(dataArr);
     doWhat(dataArr[0], dataArr[1]);
