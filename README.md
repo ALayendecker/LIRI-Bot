@@ -142,6 +142,8 @@ This will search the Bands in Town Artist Events API for an artist and render th
 - Venue location
 - Date of the Event (use moment to format this as "MM/DD/YYYY")
 
+<img src="https://github.com/ALayendecker/LIRI-Bot/blob/master/assets/images/concert-this.PNG"/>
+
 #### `spotify-this-song (songName)`
 
 This will show the following information about the song in your terminal/bash window
@@ -150,6 +152,8 @@ This will show the following information about the song in your terminal/bash wi
 - The song's name:
 - A preview link of the song from Spotify:
 - The album that the song is from:
+
+<img src="https://github.com/ALayendecker/LIRI-Bot/blob/master/assets/images/Spotify-this-song.PNG"/>
 
 #### `movie-this (movieName)`
 
@@ -164,12 +168,16 @@ This will output the following information to your terminal/bash window:
 - Plot of the movie.
 - Actors in the movie.
 
+<img src="https://github.com/ALayendecker/LIRI-Bot/blob/master/assets/images/movie-this.PNG"/>
+
 #### `do-what-it-says`
 
 LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
 
 - It should run `spotify-this-song` for `"I Want it That Way,"` as follows the random text in `random.txt` file.
 - Edit the text in random.txt to test out the feature for `movie-this`, `spotify-this-song` and `concert-this`.
+
+<img src="https://github.com/ALayendecker/LIRI-Bot/blob/master/assets/images/do-what-it-says.PNG"/>
 
 <!-- CONTACT -->
 
