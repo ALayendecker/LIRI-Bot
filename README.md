@@ -192,5 +192,3 @@ Special Thanks to - [jtsai972 - For assistance with README's Thanks!](https://gi
 [stars-url]: https://github.com/Alayendecker/LIRI-Bot/stargazers
 [issues-shield]: https://img.shields.io/github/issues/Alayendecker/LIRI-Bot.svg?style=flat-square
 [issues-url]: https://github.com/Alayendecker/LIRI-Bot/issues
-
-4. Include screenshots, gifs or videos of the app functioning
