@@ -187,7 +187,7 @@ Role Lead Developer for LIRI Bot ALayendecker
 
 Project Link: [https://github.com/Alayendecker/LIRI-Bot](https://github.com/Alayendecker/LIRI-Bot)
 
-Special Thanks to - [jtsai972 - For assistance with README's Thanks!](https://github.com/jtsai972)
+Special Thanks to - [Best-Readme-Template othneildrew](https://github.com/othneildrew/Best-README-Template)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
